@@ -1,0 +1,25 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+
+class Tag extends Model
+{
+    //
+    public static function save_tags($data){
+        $tags = $data['tags'];
+        $id = DB::getPdo()->lastInsertId();
+        foreach(explode(',',$tags) as $row){
+            $new_tags[] = DB::table('tags')->insert(
+                [
+                    'tag' => $row,
+                    'questions_id' => $id
+                ]
+            );
+        }
+        
+        return $new_tags;
+    }
+}

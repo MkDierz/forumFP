@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,11 +13,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('template.admin.master');
 });
 
 Route::get('/forum', function () {
     return view('template.forum.master');
+});
+*/
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/','QuestionController@index');
+Route::get('/question/create','QuestionController@create')->middleware('auth');
+Route::post('/question/store','QuestionController@store')->middleware('auth');
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
 });
