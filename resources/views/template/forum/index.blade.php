@@ -2,7 +2,7 @@
 
 @section('content')
 
-            <div class="card border-0">
+            <div class="card border">
                 <div class="card-header">
                     <h1 class="my-3 float-left">All Questions</h1>
                     <div class="my-3 float-right">
@@ -17,6 +17,7 @@
                                 <div class="float-left m-0">
                                     <div class="btn btn-group-sm btn-group btn-group-toggle">
                                         <a href="" class="btn btn-outline-success fa fa-arrow-alt-circle-up"></a>
+                                        <a href="" class="btn btn-outline-primary">num</a>
                                         <a href="" class="btn btn-outline-danger fa fa-arrow-alt-circle-down"></a>
                                     </div>
                                 </div>

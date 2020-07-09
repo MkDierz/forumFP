@@ -35,7 +35,6 @@
                 <div class="col-md-2 p-0">
                     <!-- Categories Widget -->
                     <ul class="navbar-nav sidebar-light m-0">
-
                         <!-- Divider -->
                         <hr class="sidebar-divider my-0">
                         <hr class="sidebar-divider">
@@ -46,14 +45,12 @@
                                 <i class="fas fa-fw fa-home"></i>
                                 <span>Homes</span></a>
                         </li>
-
                         <!-- Divider -->
                         <hr class="sidebar-divider">
                         <!-- Heading -->
                         <div class="sidebar-heading">
                             Pages
                         </div>
-
                         <!-- Nav Item - Pages Collapse Menu -->
                         <li class="nav-item">
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -70,7 +67,6 @@
                                 </div>
                             </div>
                         </li>
-
                         <!-- Nav Item - Utilities Collapse Menu -->
                         <li class="nav-item">
                             <a class="nav-link collapsed" href="#" data-toggle="collapse"
@@ -89,41 +85,35 @@
                                 </div>
                             </div>
                         </li>
-
                     </ul>
-
                 </div>
-
                 <!-- Blog Entries Column -->
                 <div class="col-md-7 p-0">
                     @yield('content')
                 </div>
-
                 <!-- right wigdet Widgets Column -->
-                <div class="col-md-2">
+                <div class="col-md-2 ml-1 p-0">
 
-                    <div class="card my-4">
+                    <div class="card border-0">
                         <h5 class="card-header">Categories</h5>
                         <div class="card-body">
-                            <div class="col-lg-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li>
-                                        <a href="#">Web Design</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">HTML</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Freebies</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="#">Web Design</a>
+                                </li>
+                                <li>
+                                    <a href="#">HTML</a>
+                                </li>
+                                <li>
+                                    <a href="#">Freebies</a>
+                                </li>
+                            </ul>
 
                         </div>
                     </div>
 
                     <!-- Side Widget -->
-                    <div class="card my-4">
+                    <div class="card my-4 border-0">
                         <h5 class="card-header">Side Widget</h5>
                         <div class="card-body">
                             You can put anything you want inside of these side widgets. They are easy to use, and
@@ -132,11 +122,10 @@
                     </div>
                 </div>
             </div>
-        <!-- /.row -->
+            <!-- /.row -->
         </div>
         {{-- penutup content --}}
     </div>
-
 </div>
 @include('template.forum.partials.footer')
 
