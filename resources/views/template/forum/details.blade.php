@@ -33,10 +33,10 @@
                                 {!! $item->content !!}
                                 {{-- <a href="/question/{{$item->id}}" class="btn btn-primary">Read More &rarr;</a> --}}
                             </div>
-                            {{-- <div class="card-footer text-muted">
-                                Posted on {{$item->created_at}} by
-                                <a href="/user/">{{$item->name}}</a>
-                            </div> --}}
+                            <div class="card-footer text-muted">
+                                <a href="/answerComment/show/{{$item->id}}"><i class="fa fa-comment"></i> Komentar</a>
+                            </div> 
+                            
                         </div>
                     @endforeach
                 </div>
