@@ -30,9 +30,7 @@
 <div id="content-wrapper" class="d-flex flex-column">
     <div id="content">
         <div class="container-fluid">
-            @yield('content')
-            {{-- <div class="row p justify-content-center">
-
+            <div class="row p justify-content-center">
                 <!-- left wigdet Widgets Column -->
                 <div class="col-md-2 p-0">
                     <!-- Categories Widget -->
@@ -44,9 +42,9 @@
 
                         <!-- Nav Item - Dashboard -->
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="/">
                                 <i class="fas fa-fw fa-home"></i>
-                                <span>Home</span></a>
+                                <span>Homes</span></a>
                         </li>
 
                         <!-- Divider -->
@@ -98,33 +96,7 @@
 
                 <!-- Blog Entries Column -->
                 <div class="col-md-7 p-0">
-
-                    <h1 class="my-4">All Questions
-                    </h1>
-
-                    <!-- Blog Post -->
-                    <div class="card shadow mb-4 border-0">
-                        <div class="card-header p-0 d-flex align-items-center">
-                            <div class="float-left m-0">
-                                <div class="btn btn-group-sm btn-group btn-group-toggle">
-                                    <a href="" class="btn btn-outline-success fa fa-arrow-alt-circle-up"></a>
-                                    <a href="" class="btn btn-outline-danger fa fa-arrow-alt-circle-down"></a>
-                                </div>
-                            </div>
-                            <h2 class="m-0">Post Title</h2>
-                        </div>
-
-                        <div class="card-body">
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
-                                aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis
-                                animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                            <a href="#" class="btn btn-primary">Read More &rarr;</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            Posted on January 1, 2020 by
-                            <a href="#">Start Bootstrap</a>
-                        </div>
-                    </div>
+                    @yield('content')
                 </div>
 
                 <!-- right wigdet Widgets Column -->
@@ -159,8 +131,8 @@
                         </div>
                     </div>
                 </div>
-            </div> --}}
-            <!-- /.row -->
+            </div>
+        <!-- /.row -->
         </div>
         {{-- penutup content --}}
     </div>
