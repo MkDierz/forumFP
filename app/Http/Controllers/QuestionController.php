@@ -36,7 +36,6 @@ class QuestionController extends Controller
     public function show($id, Request $request){
         // $tdate = $request->Tdate;
         $question = Question::find($id);
-        // dd($question);
         $answers = Answer::join('users', 'answers.users_id', '=', 'users.id')
             ->where('answers.questions_id','=',$question->id)
             ->get(['answers.*', 'users.name']);
