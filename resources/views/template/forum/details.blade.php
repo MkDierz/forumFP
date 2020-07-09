@@ -18,8 +18,14 @@
                             <div class="card-header p-0 d-flex align-items-center">
                                 <div class="float-left m-0">
                                     <div class="btn btn-group-sm btn-group btn-group-toggle">
-                                        <a href="" class="btn btn-outline-success fa fa-arrow-alt-circle-up"></a>
-                                        <a href="" class="btn btn-outline-danger fa fa-arrow-alt-circle-down"></a>
+                                        <form action="/vote/answer/{{$item->id}}">
+                                            <label for="up{{$item->id}}" class="btn btn-outline-success fa fa-arrow-alt-circle-up"></label>
+                                            <label for="down{{$item->id}}" class="btn btn-outline-success fa fa-arrow-alt-circle-down"></label>
+                                            <input type="radio" onchange='this.form.submit();'  name="vote" value="1" id="up{{$item->id}}" style="display: none">
+                                            <input type="radio" onchange='this.form.submit();'  name="vote" value="-1" id="down{{$item->id}}" style="display: none" >
+                                        </form>
+                                        {{-- <a href="/vote/answer/1" class="btn btn-outline-success fa fa-arrow-alt-circle-up"></a>
+                                        <a href="/vote/answer/0" class="btn btn-outline-danger fa fa-arrow-alt-circle-down"></a> --}}
                                     </div>
                                     <div style="display: inline">
                                         <a href="/user">{{$item->name}}</a>
