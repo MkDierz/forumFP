@@ -22,16 +22,30 @@
                                     </div>
                                 </div>
                                 <h2 class="m-0">{{$item->title}}</h2>
+                                
                             </div>
 
                             <div class="card-body">
                                 {!! $item->content !!}
                                 <a href="/question/{{$item->id}}" class="btn btn-primary">Read More &rarr;</a>
                                 Total Jawaban : {{$item->answers_count}}
+                                
                             </div>
                             <div class="card-footer text-muted">
                                 Posted on {{$item->created_at}} by
                                 <a href="/user/">{{$item->name}}</a>
+                                @guest
+                                
+                                @else
+                                @if ($item->users_id == Auth::user()->id)
+                                <div class="float-right" style="display: inline">
+                                    <a href="#" class="btn btn-sm btn-info">ubah</a>
+                                    <a href="#" class="btn btn-sm btn-danger">hapus</a>
+                                    
+                                </div>
+                                @endif 
+                                @endguest
+                                
                             </div>
                         </div>
                     @endforeach

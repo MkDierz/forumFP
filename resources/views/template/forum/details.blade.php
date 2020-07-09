@@ -54,6 +54,17 @@
                             <div class="card-footer text-muted">
                                 <a href="/answerComment/show/{{$item->id}}"><i class="fa fa-comment"></i> Komentar</a>
                                 ({{$item->answer_comments_count}} Komentar)
+                                @guest
+                                
+                                @else
+                                @if ($item->users_id == Auth::user()->id)
+                                <div class="float-right" style="display: inline">
+                                    <a href="#" class="btn btn-sm btn-info">ubah</a>
+                                    <a href="#" class="btn btn-sm btn-danger">hapus</a>
+                                    
+                                </div>
+                                @endif 
+                                @endguest
                             </div>
 
                         </div>
