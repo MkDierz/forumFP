@@ -27,6 +27,7 @@
                             <div class="card-body">
                                 {!! $item->content !!}
                                 <a href="/question/{{$item->id}}" class="btn btn-primary">Read More &rarr;</a>
+                                Total Jawaban : {{$item->answers_count}}
                             </div>
                             <div class="card-footer text-muted">
                                 Posted on {{$item->created_at}} by

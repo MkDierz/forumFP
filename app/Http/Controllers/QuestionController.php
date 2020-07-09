@@ -14,7 +14,9 @@ class QuestionController extends Controller
     //
     public function index(){
         $questions = Question::join('users', 'questions.users_id', '=', 'users.id')
-        ->get(['questions.*','users.name']);
+        ->select('questions.*','users.name')
+        ->withCount('answers')
+        ->get();
         return view('template.forum.index',compact('questions'));
     }
 
@@ -38,6 +40,7 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $answers = Answer::join('users', 'answers.users_id', '=', 'users.id')
             ->where('answers.questions_id','=',$question->id)
+            ->withCount('answer_comments')
             ->get(['answers.*', 'users.name']);
         // $date = strtotime($details->created_at);
         // dd($answers);
