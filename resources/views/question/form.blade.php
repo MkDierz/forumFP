@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('template.admin.master')
 @push('script-head')
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 @endpush

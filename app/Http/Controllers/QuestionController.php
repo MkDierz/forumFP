@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Question;
 use App\User;
 use App\Tag;
+use App\Answer;
 
 class QuestionController extends Controller
 {
@@ -14,7 +15,7 @@ class QuestionController extends Controller
     public function index(){
         $questions = Question::join('users', 'questions.users_id', '=', 'users.id')
         ->get(['questions.*','users.name']);
-        return view('question.index',compact('questions'));
+        return view('template.forum.index',compact('questions'));
     }
 
     public function create(){
@@ -31,9 +32,13 @@ class QuestionController extends Controller
         $result_tags = Tag::save_tags($request->all());
         return redirect('/');
     }
-    public function show($id){
-        $details = Question::find($id);
-        // dd($details);
-        return view('question.show', compact('details'));
+    public function show($id, Request $request){
+        // $tdate = $request->Tdate;
+        $question = Question::find($id);
+        $answers = Answer::join('users', 'answers.users_id', '=', 'users.id')
+            ->get(['answers.*', 'users.name']);
+        // $date = strtotime($details->created_at);
+        // dd($answers);
+        return view('template.forum.details', compact('question', 'answers'));
     }
 }

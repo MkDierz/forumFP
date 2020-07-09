@@ -13,7 +13,7 @@
         </div>
         <div class="" title="2008-10-03 22:47:43Z">
             <span class="dibuat">dibuat</span>
-            <time itemprop="dateCreated" datetime="2008-10-03T22:47:43"></time>
+            <time itemprop="dateCreated" datetime="2008-10-03T22:47:43">{{$details->created_at}}</time>
         </div>
         
         <div class="d-flex bd-highlight">

@@ -79,6 +79,8 @@
 <!-- Page level plugins -->
 <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
 
+@stack('script-head')
+@stack('script-body')
 </body>
 
 </html>

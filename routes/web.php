@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/forum', function () {
-    return view('template.forum.master');
+    return view('template.forum.forum');
 });
 */
 Auth::routes();
@@ -37,4 +37,10 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/question/create','QuestionController@create');
     Route::post('/question/store','QuestionController@store');
     Route::get('/question/{id}','QuestionController@show');
+});
+
+Route::get('/forum', 'QuestionController@index');
+
+Route::get('/master', function(){
+    return view('template.admin.master');
 });

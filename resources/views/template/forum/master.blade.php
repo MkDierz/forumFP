@@ -30,8 +30,8 @@
 <div id="content-wrapper" class="d-flex flex-column">
     <div id="content">
         <div class="container-fluid">
-
-            <div class="row p justify-content-center">
+            @yield('content')
+            {{-- <div class="row p justify-content-center">
 
                 <!-- left wigdet Widgets Column -->
                 <div class="col-md-2 p-0">
@@ -159,9 +159,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- /.row -->
         </div>
+        {{-- penutup content --}}
     </div>
 
 </div>

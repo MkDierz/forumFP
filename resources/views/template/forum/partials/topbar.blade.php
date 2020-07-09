@@ -51,7 +51,7 @@
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-light small">Valerie Luna</span>
+                    <span class="mr-2 d-none d-lg-inline text-light small">{{ Auth::user()->name }}</span>
                     <img class="img-profile rounded-circle" src="{{asset('img/blank-user.png')}}">
                 </a>
                 <!-- Dropdown - User Information -->
