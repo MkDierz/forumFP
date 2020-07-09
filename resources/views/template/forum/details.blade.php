@@ -5,10 +5,17 @@
 @section('content')
             <div class="card mb-2">
                 <div class="card-header">
-                    <h2 class="my-3 float-left">{{$question->title}}</h2>
-                    <div class="my-3 float-right">
-                        <a href="/question/create" class="btn btn-sm btn-primary">Tambah Pertanyaan</a>
+                    <div style="float: left">
+                        <div class="btn btn-group-sm btn-group btn-group-toggle">
+                            <a href="" class="btn btn-outline-success fa fa-arrow-alt-circle-up"></a>
+                            <a href="" class="btn btn-outline-primary">num</a>
+                            <a href="" class="btn btn-outline-danger fa fa-arrow-alt-circle-down"></a>
+                        </div>
+                        <h2 class="my-3" style="display: inline">{{$question->title}}</h2>
                     </div>
+{{--                    <div class="my-3 float-right">--}}
+{{--                        <a href="/question/create" class="btn btn-sm btn-primary">Tambah Pertanyaan</a>--}}
+{{--                    </div>--}}
                 </div>
                 <!-- Blog Post -->
                 <div class="card-body">
@@ -19,6 +26,7 @@
                                 <div class="float-left m-0">
                                     <div class="btn btn-group-sm btn-group btn-group-toggle">
                                         <a href="" class="btn btn-outline-success fa fa-arrow-alt-circle-up"></a>
+                                        <a href="" class="btn btn-outline-primary">num</a>
                                         <a href="" class="btn btn-outline-danger fa fa-arrow-alt-circle-down"></a>
                                     </div>
                                     <div style="display: inline">
@@ -35,8 +43,8 @@
                             </div>
                             <div class="card-footer text-muted">
                                 <a href="/answerComment/show/{{$item->id}}"><i class="fa fa-comment"></i> Komentar</a>
-                            </div> 
-                            
+                            </div>
+
                         </div>
                     @endforeach
                 </div>
