@@ -2,7 +2,7 @@
 
 @section('content')
 
-            <div class="card border-0">
+            <div class="card border">
                 <div class="card-header">
                     <h1 class="my-3 float-left">All Questions</h1>
                     <div class="my-3 float-right">
