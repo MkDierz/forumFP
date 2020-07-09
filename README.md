@@ -56,8 +56,6 @@ Laravel + Library/Packages
 
 Catatan: Kreasikan sesuai dengan kreatifitas kelompok masing-masing. 
 
-
-
 Deadline Pengumpulan : Hari Jum’at, 10 Juli 2020. Jam 23.59.
 
 
