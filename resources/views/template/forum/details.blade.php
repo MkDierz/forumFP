@@ -12,6 +12,7 @@
                         {{--                        <a href="/question/create" class="btn btn-sm btn-primary">Tambah Pertanyaan</a>--}}
                         <div class="btn btn-group-sm btn-group btn-group-toggle  m-0">
                             <a href="" class="btn btn-outline-success fa fa-arrow-alt-circle-up"></a>
+                            <a href="" class="btn btn-outline-primary">num</a>
                             <a href="" class="btn btn-outline-danger fa fa-arrow-alt-circle-down"></a>
                         </div>
                     </div>
@@ -32,6 +33,7 @@
                         <div class="float-left m-0">
                             <div class="btn btn-group-sm btn-group btn-group-toggle">
                                 <a href="" class="btn btn-outline-success fa fa-arrow-alt-circle-up"></a>
+                                <a href="" class="btn btn-outline-primary">num</a>
                                 <a href="" class="btn btn-outline-danger fa fa-arrow-alt-circle-down"></a>
                             </div>
                             <div style="display: inline">
