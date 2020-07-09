@@ -26,9 +26,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','QuestionController@index');
-Route::get('/question/create','QuestionController@create')->middleware('auth');
-Route::post('/question/store','QuestionController@store')->middleware('auth');
+// Route::get('/question/create','QuestionController@create')->middleware('auth');
+// Route::post('/question/store','QuestionController@store')->middleware('auth');
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
+Route::group(['middleware'=>'auth'], function(){
+    Route::get('/question/create','QuestionController@create');
+    Route::post('/question/store','QuestionController@store');
+    Route::get('/question/{id}','QuestionController@show');
 });

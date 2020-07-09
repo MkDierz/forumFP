@@ -31,4 +31,9 @@ class QuestionController extends Controller
         $result_tags = Tag::save_tags($request->all());
         return redirect('/');
     }
+    public function show($id){
+        $details = Question::find($id);
+        // dd($details);
+        return view('question.show', compact('details'));
+    }
 }

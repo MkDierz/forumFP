@@ -12,7 +12,10 @@
 
                 <div class="card-body">
                     @forelse ($questions as $data)
-                        {{$data->title}}<br>
+                        <a href="question/{{$data->id}}" style="text-decoration: none;">
+                            <h2>{{$data->title}}</h2>
+                        </a><br>
+                        <br>
                         Oleh <a href="">{{$data->name}}</a><br>
                         <hr>
                     @empty
