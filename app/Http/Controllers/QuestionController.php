@@ -9,6 +9,7 @@ use App\User;
 use App\Tag;
 use App\Answer;
 use App\QuestionComment;
+use App\VoteAnswer;
 
 class QuestionController extends Controller
 {
@@ -40,12 +41,15 @@ class QuestionController extends Controller
         // $tdate = $request->Tdate;
         $question = Question::find($id);
         $questionc = QuestionComment::where('questions_id','=',$id)->count();
+        $questionvp = VoteAnswer::where('votes','=', 1)->count();;
+        $questionvn = VoteAnswer::where('votes','=', -1)->count();
+        $diff = $questionvp - $questionvn;
         $answers = Answer::join('users', 'answers.users_id', '=', 'users.id')
             ->where('answers.questions_id','=',$question->id)
             ->withCount('answer_comments')
             ->get(['answers.*', 'users.name']);
         // $date = strtotime($details->created_at);
         // dd($answers);
-        return view('template.forum.details', compact('question', 'answers','questionc'));
+        return view('template.forum.details', compact('question', 'answers','questionc', 'diff'));
     }
 }
