@@ -18,7 +18,7 @@ class CreateAnswersTable extends Migration
             $table->string('content');
             $table->bigInteger('users_id');
             $table->bigInteger('questions_id');
-            $table->tinyInteger('is_selected');
+            $table->tinyInteger('is_selected')->default('0');
             $table->timestamps();
         });
     }

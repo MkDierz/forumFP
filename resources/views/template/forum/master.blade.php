@@ -18,7 +18,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('/admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
-
+    @stack('script-head')
 </head>
 
 <body>
@@ -178,7 +178,7 @@
 <!-- Custom scripts for all pages-->
 <script src="{{asset('admin/js/sb-admin-2.min.js')}}"></script>
 
-
+@stack('script-body')
 </body>
 
 </html>

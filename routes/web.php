@@ -37,6 +37,8 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/question/create','QuestionController@create');
     Route::post('/question/store','QuestionController@store');
     Route::get('/question/{id}','QuestionController@show');
+
+    Route::post('/answer/store','AnswerController@store');
 });
 
 Route::get('/forum', 'QuestionController@index');

@@ -36,6 +36,7 @@ class QuestionController extends Controller
         // $tdate = $request->Tdate;
         $question = Question::find($id);
         $answers = Answer::join('users', 'answers.users_id', '=', 'users.id')
+            ->where('answers.questions_id','=',$question->id)
             ->get(['answers.*', 'users.name']);
         // $date = strtotime($details->created_at);
         // dd($answers);
