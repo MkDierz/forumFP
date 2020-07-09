@@ -42,6 +42,13 @@ Route::group(['middleware'=>'auth'], function(){
     
     Route::get('/answerComment/show/{id}','AnswerCommentController@show');
     Route::post('/answerComment/store','AnswerCommentController@store');
+
+<<<<<<< HEAD
+    Route::get('/questionComment/show/{id}','QuestionCommentController@show');
+    Route::post('/questionComment/store','QuestionCommentController@store');
+=======
+    Route::get('/vote/answer/{id}', 'VoteAnswerController@vote');
+>>>>>>> 7923ecab117528ba4b98fdfcf0d247345cf3280f
 });
 
 Route::get('/forum', 'QuestionController@index');

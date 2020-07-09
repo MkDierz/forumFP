@@ -8,6 +8,7 @@ use App\Question;
 use App\User;
 use App\Tag;
 use App\Answer;
+use App\QuestionComment;
 
 class QuestionController extends Controller
 {
@@ -38,12 +39,13 @@ class QuestionController extends Controller
     public function show($id, Request $request){
         // $tdate = $request->Tdate;
         $question = Question::find($id);
+        $questionc = QuestionComment::where('questions_id','=',$id)->count();
         $answers = Answer::join('users', 'answers.users_id', '=', 'users.id')
             ->where('answers.questions_id','=',$question->id)
             ->withCount('answer_comments')
             ->get(['answers.*', 'users.name']);
         // $date = strtotime($details->created_at);
         // dd($answers);
-        return view('template.forum.details', compact('question', 'answers'));
+        return view('template.forum.details', compact('question', 'answers','questionc'));
     }
 }
