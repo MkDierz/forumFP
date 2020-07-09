@@ -30,7 +30,7 @@
                                             </div>
                                                 <input type="radio" onchange='this.form.submit();'  name="vote" value="1" id="up{{$item->id}}" style="display: none">
                                                 <input type="radio" onchange='this.form.submit();'  name="vote" value="-1" id="down{{$item->id}}" style="display: none" >
-                                            
+
                                         </form>
                                         {{-- <a href="/vote/answer/1" class="btn btn-outline-success fa fa-arrow-alt-circle-up"></a>
                                         <a href="/vote/answer/0" class="btn btn-outline-danger fa fa-arrow-alt-circle-down"></a> --}}
@@ -62,6 +62,7 @@
             </div>
             <div class="card border-0 p-0">
                 <div class="card-body">
+                    <h2>Jawab</h2>
                     <form action="/answer/store" method="POST">
                         @csrf
                         <input type="hidden" name="question_id" value="{{$question->id}}" id="">
@@ -78,9 +79,7 @@
                         </div>
                     </form>
                 </div>
-
             </div>
-
 @endsection
 
 @push('script-body')

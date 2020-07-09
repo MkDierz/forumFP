@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark topbar mb-0 static-top shadow">
-    <div class="container">
+{{--    <div class="container">--}}
 
         <div class="navbar-brand mx-3">Forum Final Project</div>
         <!-- Sidebar Toggle (Topbar) -->
@@ -95,5 +95,5 @@
             @endguest
 
         </ul>
-    </div>
+{{--    </div>--}}
 </nav>
