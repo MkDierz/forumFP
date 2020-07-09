@@ -15,6 +15,7 @@ class AnswerCommentController extends Controller
         $comment = AnswerComment::join('users', 'answer_comments.users_id', '=', 'users.id')
         ->where('answer_comments.answers_id','=',$answer->id)
         ->get(['answer_comments.*','users.name']);
+        //$count_comment = ;
         return view('comment.answerForm',compact('answer','comment'));
     }
 
