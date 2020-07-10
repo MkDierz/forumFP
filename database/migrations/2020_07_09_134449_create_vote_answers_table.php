@@ -16,9 +16,9 @@ class CreateVoteAnswersTable extends Migration
         Schema::create('vote_answers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pemberi_vote_jawaban_id');
-            $table->foreign('pemberi_vote_jawaban_id')->references('id')->on('users');
+            $table->foreign('pemberi_vote_jawaban_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('answer_id');
-            $table->foreign('answer_id')->references('id')->on('answers');
+            $table->foreign('answer_id')->references('id')->on('answers')->onDelete('cascade');
             $table->smallInteger('votes');
             $table->timestamps();
         });

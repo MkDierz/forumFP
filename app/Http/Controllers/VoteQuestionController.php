@@ -11,13 +11,13 @@ class VoteQuestionController extends Controller
     //
     public function vote(Request $request){
         $vote = new VoteQuestion;
-        $vote->user_id = Auth::user()->id;
+        $vote->pemberi_vote_pertanyaan_id = Auth::user()->id;
         $vote->question_id = $request->id;
         $vote->votes = $request->vote;
         // dd($vote);
-        $data =$vote::where('user_id','=', $vote->user_id)->first();
+        $data =$vote::where('pemberi_vote_pertanyaan_id','=', $vote->pemberi_vote_pertanyaan_id)->first();
         if($data!=null){
-            $vote::where('user_id','=', $vote->user_id) 
+            $vote::where('pemberi_vote_pertanyaan_id','=', $vote->pemberi_vote_pertanyaan_id) 
             ->update([
                 'question_id'=>$request->id,
                 'votes'=>$request->vote

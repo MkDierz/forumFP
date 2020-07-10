@@ -15,8 +15,10 @@ class CreateQuestionCommentsTable extends Migration
     {
         Schema::create('question_comments', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('questions_id');
-            $table->bigInteger('users_id');
+            $table->unsignedBigInteger('questions_id');
+            $table->foreign('questions_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('content');
             $table->timestamps();
         });

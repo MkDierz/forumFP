@@ -31,6 +31,11 @@
                                         <label href="" class="btn btn-primary" style="cursor:default;">{{$item->jumlah_vote}}</label>
                                         <label for="down{{$item->id}}"
                                                class="btn btn-outline-danger fa fa-arrow-alt-circle-down"></label>
+                                        <input type="hidden" name="id" value="{{$item->id}}">
+                                        <input type="radio" onchange='this.form.submit();' name="vote" value="1"
+                                                id="up{{$item->id}}" style="display: none">
+                                        <input type="radio" onchange='this.form.submit();' name="vote" value="-1"
+                                                id="down{{$item->id}}" style="display: none">
 
                                     </div>
                                     {{-- <div style="display: inline">
@@ -39,11 +44,6 @@
                                     
                                     </div> --}}
                                     {{-- <h2 class="m-0">{{$item->title}}</h2> --}}
-                                    <input type="hidden" name="id" value="{{$item->id}}">
-                                    <input type="radio" onchange='this.form.submit();' name="vote" value="1"
-                                           id="up{{$item->id}}" style="display: none">
-                                    <input type="radio" onchange='this.form.submit();' name="vote" value="-1"
-                                           id="down{{$item->id}}" style="display: none">
                                 </form>
 
                             </div>
@@ -81,14 +81,14 @@
                         @guest
 
                         @else
-                            @if ($item->users_id == Auth::user()->id)
+                            @if ($item->pembuat_jawaban_id == Auth::user()->id)
 
 {{--                                    <a class="btn btn-sm btn-success">Relevan</a>--}}
                                     <a href="#" class="btn btn-sm btn-info">ubah</a>
                                     <a href="#" class="btn btn-sm btn-danger">hapus</a>
 
                             @endif
-                            @if ($question->users_id == Auth::user()->id)
+                            @if ($question->pembuat_pertanyaan_id == Auth::user()->id)
                                 @if ($item->is_selected == 1)
 {{--                                <div class="float-right" style="display: inline">--}}
                                         <a href="#" class="btn btn-sm btn-danger">lepas Relevan</a>

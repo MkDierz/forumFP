@@ -18,8 +18,8 @@ class QuestionController extends Controller
     public function index(){
         $questions = Question::all();
             foreach ($questions as $key => $value) {
-                $np = $questions[$key]->votes->where('votes','=',1)->where("id",'=',$questions[$key]->id)->count();
-                $nn = $questions[$key]->votes->where('votes','=',-1)->where("id",'=',$questions[$key]->id)->count();
+                $np = $questions[$key]->votes->where('votes','=',1)->where("question_id",'=',$questions[$key]->id)->count();
+                $nn = $questions[$key]->votes->where('votes','=',-1)->where("question_id",'=',$questions[$key]->id)->count();
                 $questions[$key]->jumlah_vote = $np - $nn;
             }
         $tags = Tag::join('questions','tags.questions_id','=','questions.id')->get();
@@ -47,8 +47,8 @@ class QuestionController extends Controller
         $questionc = QuestionComment::where('questions_id','=',$id)->count();
         // $diff = VoteAnswer::diffAns($id);
         $answers = Answer::all()->where('untuk_pertanyaan_id','=',$id);
+        // dd($question);
         // dd($answers);
-        // dd($answers[0]->user);
         // $answers = Answer::join('users', 'answers.users_id', '=', 'users.id')//ambil jawaban dengan jenis pertanyaan yang sama
         //     ->where('answers.questions_id','=',$question->id) //kasih keterangan
         //     ->select(['users.name','users.id as id_pembuat', 'answers.*'])
@@ -68,14 +68,15 @@ class QuestionController extends Controller
         //     //     ->count();
         //     $answers[$key]->jumlah_vote = 0;
         // }
+        // dd($answers[1]->id);
         foreach ($answers as $key => $value) {
-            $np = $answers[$key]->votes->where('votes','=',1)->where("id",'=',$answers[$key]->id)->count();
-            $nn = $answers[$key]->votes->where('votes','=',-1)->where("id",'=',$answers[$key]->id)->count();
+            $np = $answers[$key]->votes->where('votes','=',1)->where("answer_id",'=',$answers[$key]->id)->count();//dd($np);
+            $nn = $answers[$key]->votes->where('votes','=',-1)->where("answer_id",'=',$answers[$key]->id)->count();
             $answers[$key]->jumlah_vote = $np - $nn;
         }
 
         
-        // dd($answers);
+        // dd($answers[1]);
         return view('template.forum.details', compact('question', 'answers','questionc'));
     }
 
