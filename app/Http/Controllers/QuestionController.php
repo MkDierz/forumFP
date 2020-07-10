@@ -43,6 +43,7 @@ class QuestionController extends Controller
     public function show($id, Request $request){
         // $tdate = $request->Tdate;
         $question = Question::find($id);
+        // dd($question);
         $questionc = QuestionComment::where('questions_id','=',$id)->count();
         // $diff = VoteAnswer::diffAns($id);
         $answers = Answer::join('users', 'answers.users_id', '=', 'users.id')//ambil jawaban dengan jenis pertanyaan yang sama

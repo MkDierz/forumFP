@@ -25,7 +25,7 @@
                                             @csrf
                                             <div class="btn btn-group-sm btn-group btn-group-toggle">
                                                 <label for="up{{$item->id}}" class="btn btn-outline-success fa fa-arrow-alt-circle-up"></label>
-                                                {{-- <label href="" class="btn btn-outline-primary">{{$diff}}</label> --}}
+                                                <label href="" class="btn btn-outline-primary">{{$item->jumlah_vote}}</label>
                                                 <label for="down{{$item->id}}" class="btn btn-outline-danger fa fa-arrow-alt-circle-down"></label>
                                             </div>
                                                 <input type="radio" onchange='this.form.submit();'  name="vote" value="1" id="up{{$item->id}}" style="display: none">

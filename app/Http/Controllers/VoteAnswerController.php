@@ -10,7 +10,6 @@ class VoteAnswerController extends Controller
 {
     //
     public function vote($id, Request $request){
-        // dd($request);
         $vote = new VoteAnswer;
         $vote->user_id = Auth::user()->id;
         $vote->answer_id = $request->id;
@@ -19,6 +18,7 @@ class VoteAnswerController extends Controller
         if($data!=null){
             $vote::where('user_id','=', $vote->user_id) 
             ->update([
+                'answer_id'=>$request->id,
                 'votes'=>$request->vote
             ]);         
         }else{
