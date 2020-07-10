@@ -36,6 +36,9 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/question/create','QuestionController@create');
     Route::post('/question/store','QuestionController@store');
+    Route::delete('/question/{id}','QuestionController@destroy');
+    Route::get('/question/edit/{id}','QuestionController@edit');
+    Route::put('/question/{id}','QuestionController@update');
     Route::get('/question/{id}','QuestionController@show');
 
     Route::post('/answer/store','AnswerController@store');

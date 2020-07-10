@@ -32,11 +32,9 @@
                                                 <input type="radio" onchange='this.form.submit();'  name="vote" value="-1" id="down{{$item->id}}" style="display: none" >
                                             
                                         </form>
-    
                                     </div>
                                 </div>
                                 <h2 class="m-0"><a href="/question/{{$item->id}}">{{$item->title}}</a></h2>
-                                
                             </div>
 
                             <div class="card-body">
@@ -61,9 +59,32 @@
                                 @else
                                 @if ($item->users_id == Auth::user()->id)
                                 <div class="float-right" style="display: inline">
-                                    <a href="#" class="btn btn-sm btn-info">ubah</a>
-                                    <a href="#" class="btn btn-sm btn-danger">hapus</a>
-                                    
+                                    <a href="/question/edit/{{$item->id}}" class="btn btn-sm btn-info"><i class="fa fa-pencil-alt"></i></a>
+                                    <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal{{$item->id}}"><i class="fa fa-trash"></i></a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Peringatan</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body">
+                                            Yakin ingin menghapus pertanyaan "<b>{{$item->title}}</b>" ?
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                            <form method="post" action="/question/{{$item->id}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-primary">Yakin</button>
+                                            </form>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 @endif 
                                 @endguest

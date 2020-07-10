@@ -19,6 +19,7 @@ class QuestionController extends Controller
         $questions = Question::join('users', 'questions.users_id', '=', 'users.id')
         ->select('questions.*','users.name')
         ->withCount('answers')
+        ->orderBy('questions.id','desc')
         ->get();
         $tags = Tag::join('questions','tags.questions_id','=','questions.id')->get();
         // $questions->diff = VoteQuestion::diffQues();
@@ -70,5 +71,34 @@ class QuestionController extends Controller
         
         // dd($answers);
         return view('template.forum.details', compact('question', 'answers','questionc'));
+    }
+
+    public function edit($id){
+        $edit = Question::find($id);
+        $tag_edit = Tag::where('questions_id','=',$edit->id)->get();
+        foreach($tag_edit as $data_tag){
+            $resultstr[] = $data_tag->tag;
+        }
+        return view('template.forum.edit',compact('edit','resultstr'));
+    }
+
+    public function update($id, Request $request){
+        $update = Question::find($id);
+        $update->title = $request['title'];
+        $update->content = $request['content'];
+        $update->updated_at = now();
+        $update->save();
+
+        $delete_tag = Tag::where('questions_id','=',$id)->delete();
+        $result_tags = Tag::update_tags($id, $request->all());
+
+        return redirect('/question/'.$id);
+    }
+
+    public function destroy($id){
+        $delete = Question::find($id);
+        $delete->delete();
+
+        return redirect('/');
     }
 }
