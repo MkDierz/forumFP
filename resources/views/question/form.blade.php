@@ -30,11 +30,11 @@
                         <div class="form-group row">
                             <label for="email" class="col-md-2 col-form-label text-md-right">Tags</label>
                             <div class="col-md-10">
-                                <input id="email" type="text" class="form-control" name="tags" placeholder="Tag1, Tag2, Tag3, ...." value="{{ old('tags') }}" required autofocus>
+                                <input id="email" type="text" class="form-control" name="tags" placeholder="Tag1,Tag2,Tag3,...." value="{{ old('tags') }}" required autofocus>
                             </div>
                         </div>
 
-                        
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-10 offset-md-2">
@@ -68,14 +68,14 @@
       file_browser_callback : function(field_name, url, type, win) {
         var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
         var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
-  
+
         var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
         if (type == 'image') {
           cmsURL = cmsURL + "&type=Images";
         } else {
           cmsURL = cmsURL + "&type=Files";
         }
-  
+
         tinyMCE.activeEditor.windowManager.open({
           file : cmsURL,
           title : 'Filemanager',
@@ -86,7 +86,7 @@
         });
       }
     };
-  
+
     tinymce.init(editor_config);
   </script>
 @endpush
