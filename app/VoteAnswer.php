@@ -8,4 +8,5 @@ class VoteAnswer extends Model
 {
     //
     protected $table = 'vote_answers';
+    
 }

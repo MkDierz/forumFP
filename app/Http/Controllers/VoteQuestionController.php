@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\VoteAnswer;
+use App\VoteQuestion;
 
-class VoteAnswerController extends Controller
+class VoteQuestionController extends Controller
 {
     //
     public function vote($id, Request $request){
-        // dd($request);
-        $vote = new VoteAnswer;
+        $vote = new VoteQuestion;
         $vote->user_id = Auth::user()->id;
         $vote->answer_id = $request->id;
         $vote->votes = $request->vote;
@@ -24,6 +22,6 @@ class VoteAnswerController extends Controller
         }else{
             $vote->save();
         }
-        return redirect('/question/'.$id);
+        return redirect('/question');
     }
 }

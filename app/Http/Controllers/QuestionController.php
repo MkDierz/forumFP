@@ -10,6 +10,7 @@ use App\Tag;
 use App\Answer;
 use App\QuestionComment;
 use App\VoteAnswer;
+use App\VoteQuestion;
 
 class QuestionController extends Controller
 {
@@ -19,6 +20,7 @@ class QuestionController extends Controller
         ->select('questions.*','users.name')
         ->withCount('answers')
         ->get();
+        // $questions->diff = VoteQuestion::diffQues();
         return view('template.forum.index',compact('questions'));
     }
 
@@ -41,15 +43,30 @@ class QuestionController extends Controller
         // $tdate = $request->Tdate;
         $question = Question::find($id);
         $questionc = QuestionComment::where('questions_id','=',$id)->count();
-        $questionvp = VoteAnswer::where('votes','=', 1)->count();;
-        $questionvn = VoteAnswer::where('votes','=', -1)->count();
-        $diff = $questionvp - $questionvn;
-        $answers = Answer::join('users', 'answers.users_id', '=', 'users.id')
-            ->where('answers.questions_id','=',$question->id)
+        // $diff = VoteAnswer::diffAns($id);
+        $answers = Answer::join('users', 'answers.users_id', '=', 'users.id')//ambil jawaban dengan jenis pertanyaan yang sama
+            ->where('answers.questions_id','=',$question->id) //kasih keterangan
+            ->select(['users.name','users.id as id_pembuat', 'answers.*'])
             ->withCount('answer_comments')
-            ->get(['answers.*', 'users.name']);
-        // $date = strtotime($details->created_at);
+            ->get();
+        $votes = Answer::join('vote_answers', 'vote_answers.answer_id', '=', 'answers.id' )
+            ->select(['vote_answers.votes', 'answers.*'])
+            ->get();
+        foreach ($answers as $key => $value) {
+            $np = $votes
+                ->where("votes",'=', 1)
+                ->where("id",'=',$value->id)
+                ->count();
+            $nn = $votes
+                ->where("id",'=',$value->id)
+                ->where("votes",'=',-1)
+                ->count();
+            $answers[$key]->jumlah_vote = $np - $nn;
+        }
+
+
+        
         // dd($answers);
-        return view('template.forum.details', compact('question', 'answers','questionc', 'diff'));
+        return view('template.forum.details', compact('question', 'answers','questionc'));
     }
 }
