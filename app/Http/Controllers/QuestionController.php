@@ -20,8 +20,9 @@ class QuestionController extends Controller
         ->select('questions.*','users.name')
         ->withCount('answers')
         ->get();
+        $tags = Tag::join('questions','tags.questions_id','=','questions.id')->get();
         // $questions->diff = VoteQuestion::diffQues();
-        return view('template.forum.index',compact('questions'));
+        return view('template.forum.index',compact('questions','tags'));
     }
 
     public function create(){

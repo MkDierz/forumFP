@@ -35,14 +35,22 @@
     
                                     </div>
                                 </div>
-                                <h2 class="m-0">{{$item->title}}</h2>
+                                <h2 class="m-0"><a href="/question/{{$item->id}}">{{$item->title}}</a></h2>
                                 
                             </div>
 
                             <div class="card-body">
                                 {!! $item->content !!}
-                                <a href="/question/{{$item->id}}" class="btn btn-primary">Read More &rarr;</a>
-                                Total Jawaban : {{$item->answers_count}}
+                                <hr>
+                                @foreach ($tags as $tag)
+                                    @if ($tag->questions_id == $item->id)
+                                        <a href="" class="btn btn-sm btn-secondary">{{$tag->tag}}</a>
+                                    @endif
+                                @endforeach
+                                <br>
+                                {{-- <a href="/question/{{$item->id}}" class="btn btn-primary">Read More &rarr;</a> --}}
+                                <a href="/question/{{$item->id}}">Total Jawaban : {{$item->answers_count}}</a> 
+                                <br>
                                 
                             </div>
                             <div class="card-footer text-muted">
