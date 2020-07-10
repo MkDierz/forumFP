@@ -17,4 +17,5 @@ class AnswerController extends Controller
 
         return redirect('/question/'.$request->question_id);
     }
+
 }

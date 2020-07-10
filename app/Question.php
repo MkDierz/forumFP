@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Tag;
 use App\Answer;
 use App\QuestionComment;
+
 class Question extends Model
 {
     //
@@ -17,6 +18,11 @@ class Question extends Model
     public function answers()
     {
         return $this->hasMany('App\Answer','untuk_pertanyaan_id');
+    }
+
+    public function tags()
+    {
+        return $this->hasMany('App\Tag','questions_id');
     }
 
     public function question_comments()
