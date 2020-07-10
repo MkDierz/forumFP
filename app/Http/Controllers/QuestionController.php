@@ -16,11 +16,28 @@ class QuestionController extends Controller
 {
     //
     public function index(){
-        $questions = Question::join('users', 'questions.users_id', '=', 'users.id')
-        ->select('questions.*','users.name')
-        ->withCount('answers')
-        ->get();
-        // $questions->diff = VoteQuestion::diffQues();
+        $questions = Question::join('users', 'questions.users_id', '=', 'users.id')//ambil jawaban dengan jenis pertanyaan yang sama
+            ->select(['users.name','users.id as id_pembuat', 'questions.*'])
+            ->withCount('question_comments')
+            ->get();
+        // dd($questions);
+        $votes = Question::join('vote_questions', 'vote_questions.question_id', '=', 'questions.id' )
+            ->select(['vote_questions.votes', 'questions.*'])
+            ->get();
+        
+            foreach ($questions as $key => $value) {
+                $np = $votes
+                    ->where("votes",'=', 1)
+                    ->where("id",'=',$value->id)
+                    ->count();
+                $nn = $votes
+                    ->where("id",'=',$value->id)
+                    ->where("votes",'=',-1)
+                    ->count();
+                $questions[$key]->jumlah_vote = $np - $nn;
+            }
+        // dd($questions);
+        
         return view('template.forum.index',compact('questions'));
     }
 
@@ -42,6 +59,7 @@ class QuestionController extends Controller
     public function show($id, Request $request){
         // $tdate = $request->Tdate;
         $question = Question::find($id);
+        // dd($question);
         $questionc = QuestionComment::where('questions_id','=',$id)->count();
         // $diff = VoteAnswer::diffAns($id);
         $answers = Answer::join('users', 'answers.users_id', '=', 'users.id')//ambil jawaban dengan jenis pertanyaan yang sama
