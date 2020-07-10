@@ -42,16 +42,16 @@
                             <div class="card-body">
                                 {!! $item->content !!}
                                 <a href="/question/{{$item->id}}" class="btn btn-primary">Read More &rarr;</a>
-                                Total Jawaban : {{$item->answers_count}}
+                                Total Jawaban : {{$item->count()}}
                                 
                             </div>
                             <div class="card-footer text-muted">
                                 Posted on {{$item->created_at}} by
-                                <a href="/user/">{{$item->name}}</a>
+                                <a href="/user/">{{$item->users->name}}</a>
                                 @guest
                                 
                                 @else
-                                @if ($item->users_id == Auth::user()->id)
+                                @if ($item->pembuat_pertanyaan_id == Auth::user()->id)
                                 <div class="float-right" style="display: inline">
                                     <a href="#" class="btn btn-sm btn-info">ubah</a>
                                     <a href="#" class="btn btn-sm btn-danger">hapus</a>

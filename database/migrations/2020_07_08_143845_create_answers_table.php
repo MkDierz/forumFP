@@ -15,9 +15,11 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->string('content');
-            $table->bigInteger('users_id');
-            $table->bigInteger('questions_id');
+            $table->unsignedBigInteger('untuk_pertanyaan_id');
+            $table->foreign('untuk_pertanyaan_id')->references('id')->on('questions');
+            $table->unsignedBigInteger('pembuat_jawaban_id');
+            $table->foreign('pembuat_jawaban_id')->references('id')->on('users');
+            $table->text('content');
             $table->tinyInteger('is_selected')->default('0');
             $table->timestamps();
         });

@@ -17,4 +17,11 @@ class Answer extends Model
     {
         return $this->hasMany('App\AnswerComment','answers_id');
     }
+    public function user()
+    {
+    	return $this->belongsTo('App\User','pembuat_jawaban_id','id');
+    }
+    public function votes(){
+        return $this->hasMany('App\VoteAnswer','answer_id','id');
+    }
 }

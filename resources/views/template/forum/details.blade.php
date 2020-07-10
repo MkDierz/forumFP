@@ -37,7 +37,7 @@
 
                                     </div>
                                     <div style="display: inline">
-                                        <a href="/user">{{$item->name}}</a>
+                                        <a href="/user">{{$item->user->name}}</a>
                                     </div>
                                     
                                 </div>
