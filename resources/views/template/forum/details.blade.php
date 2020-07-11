@@ -32,6 +32,8 @@
                                         <label for="down{{$item->id}}"
                                                class="btn btn-outline-danger fa fa-arrow-alt-circle-down"></label>
                                         <input type="hidden" name="id" value="{{$item->id}}">
+
+                                        
                                         <input type="radio" onchange='this.form.submit();' name="vote" value="1"
                                                 id="up{{$item->id}}" style="display: none">
                                         <input type="radio" onchange='this.form.submit();' name="vote" value="-1"
