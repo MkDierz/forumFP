@@ -18,6 +18,15 @@
                 <small>tidak ada komentar sebelumnya</small>
                 <hr>
             @endforelse
+
+            @guest
+            <div class="form-group row mb-0">
+                <div class="col-md-12">
+                    Silahkan <a href="/login">Login</a> untuk memberikan komentar.<br>
+                    <a href="/question/{{$answer->untuk_pertanyaan_id}}" >Kembali ke Pertanyaan</a>
+                </div>
+            </div>
+            @else
             <form method="POST" action="/answerComment/store">
                 @csrf
                 <input type="hidden" name="answers_id" value="{{$answer->id}}">
@@ -36,6 +45,8 @@
                     </div>
                 </div>
             </form>
+            @endguest
+            
         </div>
     </div>
     {{--        </div>--}}

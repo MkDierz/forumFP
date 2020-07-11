@@ -108,7 +108,14 @@
             @endforeach
         </div>
     </div>
-    <div class="card border-0 p-0">
+    @guest
+    <div class="card border-0 p-0 mb-5">
+        <div class="card-body">
+            Silahkan <a href="/login">Login</a> untuk memberikan jawaban
+        </div>
+    </div>
+    @else
+    <div class="card border-0 p-0 mb-5">
         <div class="card-body">
             <h2>Jawab</h2>
             <form action="/answer/store" method="POST">
@@ -129,6 +136,8 @@
             </form>
         </div>
     </div>
+    @endguest
+    
 @endsection
 
 @push('script-body')

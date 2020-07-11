@@ -33,23 +33,27 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
+Route::get('/question/{id}','QuestionController@show'); //detail pertanyaan
+Route::get('/answerComment/show/{id}','AnswerCommentController@show'); //komentar jawaban
+Route::get('/questionComment/show/{id}','QuestionCommentController@show'); //komentar pertanyaan
+
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/question/create','QuestionController@create');
     Route::post('/question/store','QuestionController@store');
     Route::delete('/question/{id}','QuestionController@destroy');
     Route::get('/question/edit/{id}','QuestionController@edit');
     Route::put('/question/{id}','QuestionController@update');
-    Route::get('/question/{id}','QuestionController@show');
+    //Route::get('/question/{id}','QuestionController@show');
 
     Route::post('/answer/store','AnswerController@store');
 
     Route::get('/answer/relevan/{aid}/{qid}','AnswerController@relevan');
     Route::get('/answer/lepasrelevan/{qid}','AnswerController@lepasrelevan');
     
-    Route::get('/answerComment/show/{id}','AnswerCommentController@show');
+    //Route::get('/answerComment/show/{id}','AnswerCommentController@show');
     Route::post('/answerComment/store','AnswerCommentController@store');
 
-    Route::get('/questionComment/show/{id}','QuestionCommentController@show');
+    //Route::get('/questionComment/show/{id}','QuestionCommentController@show');
     Route::post('/questionComment/store','QuestionCommentController@store');
     Route::post('/vote/answer/{id}', 'VoteAnswerController@vote');
     Route::post('/vote/question/{id}', 'VoteQuestionController@vote');
