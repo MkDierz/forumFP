@@ -14,7 +14,7 @@
         <div class="card-body">
             {!! $question->content !!}
             <a href="/questionComment/show/{{$question->id}}"><i class="fa fa-comment"></i> Komentar</a>
-            ({{$questionc}} Komentar)
+            <small>({{$questionc}} Komentar)</small>
             <hr>
 {{--            <h3>Jawaban</h3>--}}
             @foreach ($answers as $item)
@@ -76,7 +76,7 @@
                     </div> --}}
                     <div class="card-footer text-muted">
                         <a href="/answerComment/show/{{$item->id}}"><i class="fa fa-comment"></i> Komentar</a>
-                        ({{$item->answer_comments_count}} Komentar)
+                        <small>({{$item->answer_comments_count}} Komentar)</small>
                         <div class="float-right" style="display: inline">
                         @guest
 

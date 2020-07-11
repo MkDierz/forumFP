@@ -32,7 +32,7 @@
                         <button type="submit" class="btn btn-primary">
                             Kirim Komentar
                         </button>
-                        <a href="/question/{{$answer->questions_id}}" class="btn btn-warning">Kembali ke Pertanyaan</a>
+                        <a href="/question/{{$answer->untuk_pertanyaan_id}}" class="btn btn-warning">Kembali ke Pertanyaan</a>
                     </div>
                 </div>
             </form>
