@@ -13,4 +13,11 @@ class VoteQuestion extends Model
         $questionvn = VoteQuestion::where('votes','=', -1)->count();
         return $questionvp - $questionvn;
     }
+    public static function jumlahDownVote($user_id){
+        $data = VoteQuestion::all()->where('pemberi_vote_pertanyaan_id',$user_id)
+                                    ->where('votes',-1)
+                                    ->count();
+        // dd($data);
+        return $data;
+    }
 }

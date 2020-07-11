@@ -2,8 +2,8 @@
 
 @section('content')
     <div>
-        <h1>nama</h1>
-        <h4>email</h4>
-        <h5>reputasi</h5>
+        <h1>Nama: {{$user->name}}</h1>
+        <h4>Email: {{$user->email}}</h4>
+        <h5>Reputasi: {{$user->reputasi}}</h5>
     </div>
 @endsection

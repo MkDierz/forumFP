@@ -5,6 +5,10 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\VoteAnswer;
+use App\VoteQuestion;
+use App\Answer;
+use App\Question;
 
 class User extends Authenticatable
 {
@@ -37,8 +41,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function items(){
-        return $this->hasMany('App\Answer');
+    public function answers(){
+        return $this->hasMany('App\Answer', 'pembuat_jawaban_id', 'id');;
+    }
+    public static function poin($id){
+        $nRel = Answer::jumlahRelevan($id)*15;
+        $nVotesAnswer = Answer::totalJawabanVotesDari($id)*10;
+        $nVotesQuestion = Question::totalQuestionVotesDari($id)*10;
+        $nDownVoteAnswer = VoteAnswer::jumlahDownVote($id);
+        $nDownVoteQuestion = VoteQuestion::jumlahDownVote($id);
+        $totalPoin = $nRel + $nVotesAnswer + $nVotesQuestion - $nDownVoteAnswer - $nDownVoteQuestion;
+        return $totalPoin;
     }
 }
 
