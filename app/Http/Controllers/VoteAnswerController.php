@@ -5,13 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\VoteAnswer;
+use App\User;
 
 class VoteAnswerController extends Controller
 {
     //
     public function vote($id, Request $request){
+        VoteAnswer::berikanVote($id, $request);
+        return redirect('/question/'.$id);
+    }
+
+    public function votes($id, Request $request){
+        $idUser = Auth::user()->id;
         $vote = new VoteAnswer;
-        $vote->pemberi_vote_jawaban_id = Auth::user()->id;
+        $vote->pemberi_vote_jawaban_id = $idUser;
         $vote->answer_id = $request->id;
         $vote->votes = $request->vote;
         $data =$vote::where('pemberi_vote_jawaban_id','=', $vote->pemberi_vote_jawaban_id)->first();

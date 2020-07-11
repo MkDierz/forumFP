@@ -32,6 +32,8 @@
                                         <label for="down{{$item->id}}"
                                                class="btn btn-outline-danger fa fa-arrow-alt-circle-down"></label>
                                         <input type="hidden" name="id" value="{{$item->id}}">
+
+                                        
                                         <input type="radio" onchange='this.form.submit();' name="vote" value="1"
                                                 id="up{{$item->id}}" style="display: none">
                                         <input type="radio" onchange='this.form.submit();' name="vote" value="-1"
@@ -108,27 +110,44 @@
             @endforeach
         </div>
     </div>
-    <div class="card border-0 p-0">
+    @guest
+    <div class="card border-0 p-0 mb-5">
         <div class="card-body">
-            <h2>Jawab</h2>
-            <form action="/answer/store" method="POST">
-                @csrf
-                <input type="hidden" name="question_id" value="{{$question->id}}" id="">
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <textarea name="content" rows="10"
-                                  class="form-control my-editor">{!! old('content', $content ?? '') !!}</textarea>
-                    </div>
-                </div>
-                <div class="form-group row mb-5">
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary">Kirim Jawaban</button>
-                    </div>
-
-                </div>
-            </form>
+            Silahkan <a href="/login">Login</a> untuk memberikan jawaban
         </div>
     </div>
+    @else
+        @if ($question->pembuat_pertanyaan_id == Auth::user()->id)
+        <div class="card border-0 p-0 mb-5">
+            <div class="card-body">
+                Silahkan pilih jawaban terbaik untuk pertanyaanmu
+            </div>
+        </div>
+        @else
+        <div class="card border-0 p-0 mb-5">
+            <div class="card-body">
+                <h2>Jawab</h2>
+                <form action="/answer/store" method="POST">
+                    @csrf
+                    <input type="hidden" name="question_id" value="{{$question->id}}" id="">
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <textarea name="content" rows="10"
+                                    class="form-control my-editor">{!! old('content', $content ?? '') !!}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-5">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary">Kirim Jawaban</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        @endif
+    @endguest
+    
 @endsection
 
 @push('script-body')

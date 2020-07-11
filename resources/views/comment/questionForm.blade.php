@@ -19,24 +19,34 @@
                         <small>tidak ada komentar sebelumnya</small>
                         <hr>
                     @endforelse
+                    
+                    @guest
+                    <div class="form-group row mb-0">
+                      <div class="col-md-12">
+                          Silahkan <a href="/login">Login</a> untuk memberikan komentar.<br>
+                          <a href="/question/{{$question->id}}" class="">Kembali ke Pertanyaan</a>
+                      </div>
+                    </div>
+                    @else
                     <form method="POST" action="/questionComment/store">
-                        @csrf
-                        <input type="hidden" name="questions_id" value="{{$question->id}}">
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                                <input type="text" name="content" placeholder="Tulis Komentar Disini" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary">
-                                    Kirim Komentar
-                                </button>
-                                <a href="/question/{{$question->id}}" class="btn btn-warning">Kembali ke Pertanyaan</a>
-                            </div>
-                        </div>
+                      @csrf
+                      <input type="hidden" name="questions_id" value="{{$question->id}}">
+                      <div class="form-group row">
+                          <div class="col-md-12">
+                              <input type="text" name="content" placeholder="Tulis Komentar Disini" class="form-control">
+                          </div>
+                      </div>
+                      
+                      <div class="form-group row mb-0">
+                          <div class="col-md-12">
+                              <button type="submit" class="btn btn-primary">
+                                  Kirim Komentar
+                              </button>
+                              <a href="/question/{{$question->id}}" class="btn btn-warning">Kembali ke Pertanyaan</a>
+                          </div>
+                      </div>
                     </form>
+                    @endguest
                 </div>
             </div>
 {{--        </div>--}}

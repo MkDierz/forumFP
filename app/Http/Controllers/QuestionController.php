@@ -43,40 +43,18 @@ class QuestionController extends Controller
     
     public function show($id, Request $request){
         $question = Question::find($id);
-        // dd($question);
         $questionc = QuestionComment::where('questions_id','=',$id)->count();
-        // $diff = VoteAnswer::diffAns($id);
         $answers = Answer::where('untuk_pertanyaan_id','=',$id)->orderBy('is_selected','desc')->withCount('answer_comments')->get();
-        // dd($question);
-        // dd($answers);
-        // $answers = Answer::join('users', 'answers.users_id', '=', 'users.id')//ambil jawaban dengan jenis pertanyaan yang sama
-        //     ->where('answers.questions_id','=',$question->id) //kasih keterangan
-        //     ->select(['users.name','users.id as id_pembuat', 'answers.*'])
-        //     ->withCount('answer_comments')
-        //     ->get();
-        // $votes = Answer::join('vote_answers', 'vote_answers.answer_id', '=', 'answers.id' )
-        //     ->select(['vote_answers.votes', 'answers.*'])
-        //     ->get();
-        // foreach ($answers as $key => $value) {
-        //     // $np = $votes
-        //     //     ->where("votes",'=', 1)
-        //     //     ->where("id",'=',$value->id)
-        //     //     ->count();
-        //     // $nn = $votes
-        //     //     ->where("id",'=',$value->id)
-        //     //     ->where("votes",'=',-1)
-        //     //     ->count();
-        //     $answers[$key]->jumlah_vote = 0;
-        // }
-        // dd($answers[1]->id);
+        
         foreach ($answers as $key => $value) {
+            // $answers[$key]->lastValue = $answers[$key]->votes[$key]->where('pemberi_votejawaban',)
             $np = $answers[$key]->votes->where('votes','=',1)->where("answer_id",'=',$answers[$key]->id)->count();//dd($np);
             $nn = $answers[$key]->votes->where('votes','=',-1)->where("answer_id",'=',$answers[$key]->id)->count();
             $answers[$key]->jumlah_vote = $np - $nn;
         }
 
-        
-        // dd($answers[1]);
+        // dd('hha');
+        // dd(Answer::all()[0]->votes->where('pemberi_vote_jawaban_id',2)->where('answer_id'));//->where('pemberi_vote_jawaban_id','=',1));
         return view('template.forum.details', compact('question', 'answers','questionc'));
     }
 
