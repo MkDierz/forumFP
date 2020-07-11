@@ -42,6 +42,9 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/question/{id}','QuestionController@show');
 
     Route::post('/answer/store','AnswerController@store');
+
+    Route::get('/answer/relevan/{aid}/{qid}','AnswerController@relevan');
+    Route::get('/answer/lepasrelevan/{qid}','AnswerController@lepasrelevan');
     
     Route::get('/answerComment/show/{id}','AnswerCommentController@show');
     Route::post('/answerComment/store','AnswerCommentController@store');

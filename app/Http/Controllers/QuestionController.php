@@ -46,7 +46,7 @@ class QuestionController extends Controller
         // dd($question);
         $questionc = QuestionComment::where('questions_id','=',$id)->count();
         // $diff = VoteAnswer::diffAns($id);
-        $answers = Answer::all()->where('untuk_pertanyaan_id','=',$id);
+        $answers = Answer::all()->where('untuk_pertanyaan_id','=',$id)->sortByDesc('is_selected');
         // dd($question);
         // dd($answers);
         // $answers = Answer::join('users', 'answers.users_id', '=', 'users.id')//ambil jawaban dengan jenis pertanyaan yang sama

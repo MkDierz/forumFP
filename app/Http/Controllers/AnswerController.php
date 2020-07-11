@@ -18,4 +18,22 @@ class AnswerController extends Controller
         return redirect('/question/'.$request->question_id);
     }
 
+    public function relevan($aid,$qid){
+        $relevan = Answer::find($aid);
+        Answer::where('untuk_pertanyaan_id',$qid)->update([
+        'is_selected' => 0
+        ]);
+        $relevan->is_selected = 1;
+        $relevan->save();
+        
+        return redirect('/question/'.$qid);
+    }
+
+    public function lepasrelevan($qid){
+        Answer::where('untuk_pertanyaan_id',$qid)->update([
+            'is_selected' => 0
+        ]);
+        return redirect('/question/'.$qid);
+    }
+
 }

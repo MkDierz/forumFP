@@ -91,11 +91,11 @@
                             @if ($question->pembuat_pertanyaan_id == Auth::user()->id)
                                 @if ($item->is_selected == 1)
 {{--                                <div class="float-right" style="display: inline">--}}
-                                        <a href="#" class="btn btn-sm btn-danger">lepas Relevan</a>
+                                        <a href="/answer/lepasrelevan/{{$question->id}}" class="btn btn-sm btn-danger">lepas Relevan</a>
 {{--                                </div>--}}
                                     @else
 {{--                                <div class="float-right" style="display: inline">--}}
-                                        <a href="#" class="btn btn-sm btn-success">Relevan</a>
+                                        <a href="/answer/relevan/{{$item->id}}/{{$question->id}}" class="btn btn-sm btn-success">Relevan</a>
 {{--                                </div>--}}
                                 @endif
 
