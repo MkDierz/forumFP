@@ -115,27 +115,35 @@
         </div>
     </div>
     @else
-    <div class="card border-0 p-0 mb-5">
-        <div class="card-body">
-            <h2>Jawab</h2>
-            <form action="/answer/store" method="POST">
-                @csrf
-                <input type="hidden" name="question_id" value="{{$question->id}}" id="">
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <textarea name="content" rows="10"
-                                  class="form-control my-editor">{!! old('content', $content ?? '') !!}</textarea>
-                    </div>
-                </div>
-                <div class="form-group row mb-5">
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary">Kirim Jawaban</button>
-                    </div>
-
-                </div>
-            </form>
+        @if ($question->pembuat_pertanyaan_id == Auth::user()->id)
+        <div class="card border-0 p-0 mb-5">
+            <div class="card-body">
+                Silahkan pilih jawaban terbaik untuk pertanyaanmu
+            </div>
         </div>
-    </div>
+        @else
+        <div class="card border-0 p-0 mb-5">
+            <div class="card-body">
+                <h2>Jawab</h2>
+                <form action="/answer/store" method="POST">
+                    @csrf
+                    <input type="hidden" name="question_id" value="{{$question->id}}" id="">
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <textarea name="content" rows="10"
+                                    class="form-control my-editor">{!! old('content', $content ?? '') !!}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-5">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary">Kirim Jawaban</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        @endif
     @endguest
     
 @endsection
