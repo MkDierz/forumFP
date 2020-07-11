@@ -45,7 +45,7 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::get('/answer/relevan/{aid}/{qid}','AnswerController@relevan');
     Route::get('/answer/lepasrelevan/{qid}','AnswerController@lepasrelevan');
-    
+
     Route::get('/answerComment/show/{id}','AnswerCommentController@show');
     Route::post('/answerComment/store','AnswerCommentController@store');
 
@@ -54,6 +54,9 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/vote/answer/{id}', 'VoteAnswerController@vote');
     Route::post('/vote/question/{id}', 'VoteQuestionController@vote');
     Route::get('/user/{id}','UserController@index');
+    Route::get('/profile', function () {
+        return view('template.admin.profile');
+    });
 });
 
 Route::get('/forum', 'QuestionController@index');
