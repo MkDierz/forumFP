@@ -16,7 +16,7 @@ class QuestionController extends Controller
 {
     //
     public function index(){
-        $questions = Question::all();
+        $questions = Question::withCount('answers')->get();
             foreach ($questions as $key => $value) {
                 $np = $questions[$key]->votes->where('votes','=',1)->where("question_id",'=',$questions[$key]->id)->count();
                 $nn = $questions[$key]->votes->where('votes','=',-1)->where("question_id",'=',$questions[$key]->id)->count();
@@ -46,7 +46,7 @@ class QuestionController extends Controller
         // dd($question);
         $questionc = QuestionComment::where('questions_id','=',$id)->count();
         // $diff = VoteAnswer::diffAns($id);
-        $answers = Answer::all()->where('untuk_pertanyaan_id','=',$id);
+        $answers = Answer::where('untuk_pertanyaan_id','=',$id)->orderBy('is_selected','desc')->withCount('answer_comments')->get();
         // dd($question);
         // dd($answers);
         // $answers = Answer::join('users', 'answers.users_id', '=', 'users.id')//ambil jawaban dengan jenis pertanyaan yang sama

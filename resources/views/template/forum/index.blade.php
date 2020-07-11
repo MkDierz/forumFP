@@ -45,7 +45,7 @@
                                 @endforeach
                                 <br>
                                 {{-- <a href="/question/{{$item->id}}" class="btn btn-primary">Read More &rarr;</a> --}}
-                                <a href="/question/{{$item->id}}">Total Jawaban : {{$item->answers_count}}</a>
+                                <a href="/question/{{$item->id}}"><b>{{$item->answers_count}} Jawaban</b></a>
                                 <br>
 
                             </div>
