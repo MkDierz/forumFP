@@ -10,7 +10,7 @@ class Answer extends Model
     //
     public function questions()
     {
-        return $this->belongsTo('App\Question');
+        return $this->belongsTo('App\Question','untuk_pertanyaan_id','id');
     }
 
     public function answer_comments()
