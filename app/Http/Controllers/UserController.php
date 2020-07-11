@@ -16,7 +16,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->reputasi = User::poin($id);
         // dd(User::poin($id));
-        return view('template.forum.user',compact('user'));
+        return view('template.admin.profile',compact('user'));
     }
     public function show($id){
         $question = Question::find($id);

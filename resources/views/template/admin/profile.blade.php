@@ -28,11 +28,11 @@
                                      alt="User profile picture">
                             </div>
 
-                            <h3 class="profile-username text-center">NAME</h3>
+                            <h3 class="profile-username text-center">{{$user->name}}</h3>
 
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
-                                    <b>Reputation Point </b> <a class="float-right">1,322</a>
+                                    <b>Reputation Point </b> <a class="float-right">{{$user->reputasi}}</a>
                                 </li>
                             </ul>
                         </div>
