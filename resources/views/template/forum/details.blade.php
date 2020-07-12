@@ -98,8 +98,32 @@
                             @if ($item->pembuat_jawaban_id == Auth::user()->id)
 
 {{--                                    <a class="btn btn-sm btn-success">Relevan</a>--}}
-                                    <a href="#" class="btn btn-sm btn-info">ubah</a>
-                                    <a href="#" class="btn btn-sm btn-danger">hapus</a>
+                                    <a href="/answer/edit/{{$item->id}}" class="btn btn-sm btn-info">ubah</a>
+                                    <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal{{$item->id}}">hapus</a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Peringatan</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body">
+                                            Yakin ingin menghapus Jawaban ini?
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                            <form method="post" action="/answer/{{$item->id}}/{{$question->id}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-primary">Yakin</button>
+                                            </form>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
 
                             @endif
                             @if ($question->pembuat_pertanyaan_id == Auth::user()->id)

@@ -7,30 +7,16 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Edit Pertanyaan</div>
+                <div class="card-header">Edit Jawaban</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/question/{{$edit->id}}">
+                    <form method="POST" action="/answer/{{$edit->id}}">
                         @csrf
                         @method('PUT')
-                        <div class="form-group row">
-                            <label for="email" class="col-md-2 col-form-label text-md-right">Judul</label>
-                            <div class="col-md-10">
-                                <input id="email" type="text" class="form-control" name="title" value="{{ $edit->title }}" required autofocus>
-                            </div>
-                        </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-2 col-form-label text-md-right">Pertanyaan</label>
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                 <textarea name="content" rows="10" class="form-control my-editor">{!! $edit->content !!}</textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-2 col-form-label text-md-right">Tags</label>
-                            <div class="col-md-10">
-                                <input id="email" type="text" class="form-control" name="tags" placeholder="Tag1, Tag2, Tag3, ...." value="{{implode(",",$resultstr)}}" required autofocus>
                             </div>
                         </div>
 

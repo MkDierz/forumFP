@@ -36,4 +36,25 @@ class AnswerController extends Controller
         return redirect('/question/'.$qid);
     }
 
+    public function edit($id){
+        $edit = Answer::find($id);
+        return view('template.forum.edit_answer',compact('edit'));
+    }
+
+    public function update($id, Request $request){
+        $update = Answer::find($id);
+        $update->content = $request['content'];
+        $update->updated_at = now();
+        $update->save();
+
+        return redirect('/');
+    }
+
+    public function destroy($aid,$qid){
+        $delete = Answer::find($aid);
+        $delete->delete();
+
+        return redirect('/question/'.$qid);
+    }
+
 }
