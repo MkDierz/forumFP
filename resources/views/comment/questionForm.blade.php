@@ -1,4 +1,7 @@
 @extends('template.forum.master')
+@push('script-head')
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+@endpush
 @section('content')
 {{--<div class="container">--}}
 {{--    <div class="row justify-content-center">--}}
@@ -19,7 +22,7 @@
                         <small>tidak ada komentar sebelumnya</small>
                         <hr>
                     @endforelse
-                    
+
                     @guest
                     <div class="form-group row mb-0">
                       <div class="col-md-12">
@@ -36,7 +39,7 @@
                               <input type="text" name="content" placeholder="Tulis Komentar Disini" class="form-control">
                           </div>
                       </div>
-                      
+
                       <div class="form-group row mb-0">
                           <div class="col-md-12">
                               <button type="submit" class="btn btn-primary">
