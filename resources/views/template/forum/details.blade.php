@@ -24,7 +24,7 @@
 
                             <div class="btn btn-group-sm btn-group btn-group-toggle pr-0">
                                 @guest
-                                <label href="" class="btn btn-primary" style="cursor:default;">{{$item->jumlah_vote}}</label>   
+                                <h5 href="" class="btn btn-primary" style="cursor:default;">{{$item->jumlah_vote}}</h5>   
                                 @else
                                     <form action="/vote/answer/{{$question->id}}" method="POST">
                                         @csrf
