@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+Use Alert;
 
 class VoteQuestion extends Model
 {
@@ -55,7 +56,7 @@ class VoteQuestion extends Model
             }
             
         }else{
-            dd('hahah poin kurang');
+            Alert::info('Reputasi Tidak Memenuhi', 'Untuk dapat melakukan downvote reputasi harus lebih dari 15');
         }
     }
 }
