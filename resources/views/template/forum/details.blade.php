@@ -26,7 +26,7 @@
                                 <form action="/vote/answer/{{$question->id}}" method="POST">
                                     @csrf
                                     <div class="btn btn-group-sm btn-group btn-group-toggle px-0">
-                                        <p>{{$item->last_value}}</p>
+                                        {{-- <p>{{$item->last_value}}</p> --}}
                                         <label for="up{{$item->id}}"
                                                class="btn btn-outline-success fa fa-arrow-alt-circle-up"></label>
                                         <label href="" class="btn btn-primary" style="cursor:default;">{{$item->jumlah_vote}}</label>
