@@ -9,9 +9,9 @@ use App\User;
 
 class VoteAnswerController extends Controller
 {
-    //
     public function vote($id, Request $request){
-        VoteAnswer::berikanVote($id, $request);
+        $idUser = Auth::user()->id;
+        VoteAnswer::giveVote($request->id, $idUser, $request->vote);
         return redirect('/question/'.$id);
     }
 

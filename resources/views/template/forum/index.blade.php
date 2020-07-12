@@ -51,7 +51,7 @@
                             </div>
                             <div class="card-footer text-muted">
                                 Posted on {{$item->created_at}} by
-                                <a href="/user/">{{$item->users->name}}</a>
+                                <a href="/user/{{$item->users->id}}">{{$item->users->name}}</a>
                                 @guest
 
                                 @else

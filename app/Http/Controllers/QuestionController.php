@@ -47,14 +47,17 @@ class QuestionController extends Controller
         $answers = Answer::where('untuk_pertanyaan_id','=',$id)->orderBy('is_selected','desc')->withCount('answer_comments')->get();
         
         foreach ($answers as $key => $value) {
-            // $answers[$key]->lastValue = $answers[$key]->votes[$key]->where('pemberi_votejawaban',)
             $np = $answers[$key]->votes->where('votes','=',1)->where("answer_id",'=',$answers[$key]->id)->count();//dd($np);
             $nn = $answers[$key]->votes->where('votes','=',-1)->where("answer_id",'=',$answers[$key]->id)->count();
             $answers[$key]->jumlah_vote = $np - $nn;
+            $lsValue = VoteAnswer::lastValue($answers[$key]->id, Auth::user()->id);
+            if($lsValue!=null){
+                $answers[$key]->last_value = $lsValue;
+            }else{
+                $answers[$key]->last_value = 0;
+            }
         }
 
-        // dd('hha');
-        // dd(Answer::all()[0]->votes->where('pemberi_vote_jawaban_id',2)->where('answer_id'));//->where('pemberi_vote_jawaban_id','=',1));
         return view('template.forum.details', compact('question', 'answers','questionc'));
     }
 
