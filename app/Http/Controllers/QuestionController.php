@@ -22,8 +22,8 @@ class QuestionController extends Controller
             foreach ($questions as $key => $value) {
                 $np = $questions[$key]->votes->where('votes','=',1)->where("question_id",'=',$questions[$key]->id)->count();
                 $nn = $questions[$key]->votes->where('votes','=',-1)->where("question_id",'=',$questions[$key]->id)->count();
+                $questions[$key]->jumlah_vote = $np - $nn;
                 if(!Auth::guest()){
-                    $questions[$key]->jumlah_vote = $np - $nn;
                     $lsValue = VoteQuestion::lastValue($questions[$key]->id, Auth::user()->id);
                     if($lsValue!=null){
                         $questions[$key]->last_value = $lsValue;
@@ -31,6 +31,11 @@ class QuestionController extends Controller
                         $questions[$key]->last_value = 0;
                     }
                 }
+            }
+            foreach ($questions as $key => $value) {
+                $np = $questions[$key]->votes->where('votes','=',1)->where("question_id",'=',$questions[$key]->id)->count();
+                $nn = $questions[$key]->votes->where('votes','=',-1)->where("question_id",'=',$questions[$key]->id)->count();
+                $questions[$key]->jumlah_vote = $np - $nn;
             }
         $tags = Tag::join('questions','tags.questions_id','=','questions.id')->get();
         return view('template.forum.index',compact('questions','tags'));
@@ -68,6 +73,12 @@ class QuestionController extends Controller
                 }
             }
         }
+        foreach ($answers as $key => $value) {
+            $np = $answers[$key]->votes->where('votes','=',1)->where("answer_id",'=',$answers[$key]->id)->count();//dd($np);
+            $nn = $answers[$key]->votes->where('votes','=',-1)->where("answer_id",'=',$answers[$key]->id)->count();
+            $answers[$key]->jumlah_vote = $np - $nn;
+        }
+        
 
         return view('template.forum.details', compact('question', 'answers','questionc'));
     }
