@@ -17,7 +17,7 @@
                                 <div class="float-left m-0">
                                     <div class="btn btn-group-sm btn-group btn-group-toggle p-0">
                                         @guest
-                                        <h5 href="" class="btn btn-primary">{{$item->jumlah_vote}}</h5>
+                                        <h5 href="" >{{$item->jumlah_vote}}</h5>
                                         @else
                                             <form action="/vote/question/{{$item->id}}" method="POST">
                                                 @csrf
