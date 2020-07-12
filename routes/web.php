@@ -33,10 +33,6 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
-Route::get('/question/{id}','QuestionController@show'); //detail pertanyaan
-Route::get('/answerComment/show/{id}','AnswerCommentController@show'); //komentar jawaban
-Route::get('/questionComment/show/{id}','QuestionCommentController@show'); //komentar pertanyaan
-
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/question/create','QuestionController@create');
     Route::post('/question/store','QuestionController@store');
@@ -57,8 +53,14 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/questionComment/store','QuestionCommentController@store');
     Route::post('/vote/answer/{id}', 'VoteAnswerController@vote');
     Route::post('/vote/question/{id}', 'VoteQuestionController@vote');
+
     Route::get('/user/{id}','UserController@index');
+    Route::get('/user/pertanyaan/{id}','UserController@pertanyaan');
 });
+
+Route::get('/question/{id}','QuestionController@show'); //detail pertanyaan
+Route::get('/answerComment/show/{id}','AnswerCommentController@show'); //komentar jawaban
+Route::get('/questionComment/show/{id}','QuestionCommentController@show'); //komentar pertanyaan
 
 Route::get('/forum', 'QuestionController@index');
 
