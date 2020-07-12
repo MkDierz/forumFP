@@ -55,16 +55,17 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $questionc = QuestionComment::where('questions_id','=',$id)->count();
         $answers = Answer::where('untuk_pertanyaan_id','=',$id)->orderBy('is_selected','desc')->withCount('answer_comments')->get();
-        
-        foreach ($answers as $key => $value) {
-            $np = $answers[$key]->votes->where('votes','=',1)->where("answer_id",'=',$answers[$key]->id)->count();//dd($np);
-            $nn = $answers[$key]->votes->where('votes','=',-1)->where("answer_id",'=',$answers[$key]->id)->count();
-            $answers[$key]->jumlah_vote = $np - $nn;
-            $lsValue = VoteAnswer::lastValue($answers[$key]->id, Auth::user()->id);
-            if($lsValue!=null){
-                $answers[$key]->last_value = $lsValue;
-            }else{
-                $answers[$key]->last_value = 0;
+        if(!Auth::guest()){
+            foreach ($answers as $key => $value) {
+                $np = $answers[$key]->votes->where('votes','=',1)->where("answer_id",'=',$answers[$key]->id)->count();//dd($np);
+                $nn = $answers[$key]->votes->where('votes','=',-1)->where("answer_id",'=',$answers[$key]->id)->count();
+                $answers[$key]->jumlah_vote = $np - $nn;
+                $lsValue = VoteAnswer::lastValue($answers[$key]->id, Auth::user()->id);
+                if($lsValue!=null){
+                    $answers[$key]->last_value = $lsValue;
+                }else{
+                    $answers[$key]->last_value = 0;
+                }
             }
         }
 
