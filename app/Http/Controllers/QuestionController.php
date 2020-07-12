@@ -11,6 +11,7 @@ use App\Answer;
 use App\QuestionComment;
 use App\VoteAnswer;
 use App\VoteQuestion;
+Use Alert;
 
 class QuestionController extends Controller
 {

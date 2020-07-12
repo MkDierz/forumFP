@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use App\VoteAnswer;
 use App\User;
+Use Alert;
 
 class VoteAnswer extends Model
 {
@@ -48,7 +49,7 @@ class VoteAnswer extends Model
             }
             
         }else{
-            dd('hahah poin kurang');
+            Alert::info('Reputasi Tidak Memenuhi', 'Untuk dapat melakukan downvote reputasi harus lebih dari 15');
         }
     }
 

@@ -23,6 +23,7 @@
 
 <body>
 
+@include('sweetalert::alert')
 <!-- Navigation -->
 @include('template.forum.partials.topbar')
 
