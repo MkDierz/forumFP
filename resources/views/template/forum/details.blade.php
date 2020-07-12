@@ -26,6 +26,7 @@
                                 <form action="/vote/answer/{{$question->id}}" method="POST">
                                     @csrf
                                     <div class="btn btn-group-sm btn-group btn-group-toggle px-0">
+                                        {{-- <p>{{$item->last_value}}</p> --}}
                                         <label for="up{{$item->id}}"
                                                class="btn btn-outline-success fa fa-arrow-alt-circle-up"></label>
                                         <label href="" class="btn btn-primary" style="cursor:default;">{{$item->jumlah_vote}}</label>
@@ -33,11 +34,22 @@
                                                class="btn btn-outline-danger fa fa-arrow-alt-circle-down"></label>
                                         <input type="hidden" name="id" value="{{$item->id}}">
 
-                                        
-                                        <input type="radio" onchange='this.form.submit();' name="vote" value="1"
-                                                id="up{{$item->id}}" style="display: none">
-                                        <input type="radio" onchange='this.form.submit();' name="vote" value="-1"
+                                      
+                                        @if ($item->last_value == 0)
+                                            <input type="radio" onchange='this.form.submit();' name="vote" value="1"
+                                                    id="up{{$item->id}}" style="display: none">
+                                            <input type="radio" onchange='this.form.submit();' name="vote" value="-1"
                                                 id="down{{$item->id}}" style="display: none">
+                                        @else 
+                                            @if ($item->last_value == 1)
+                                                <input type="radio" onchange='this.form.submit();' name="vote" value="1" id="up{{$item->id}}" style="display: none">
+                                                <input type="radio" onchange='this.form.submit();' name="vote" value="0" id="down{{$item->id}}" style="display: none">
+                                            @else
+                                                <input type="radio" onchange='this.form.submit();' name="vote" value="0" id="up{{$item->id}}" style="display: none">
+                                                <input type="radio" onchange='this.form.submit();' name="vote" value="-1" id="down{{$item->id}}" style="display: none">
+                                            @endif
+                                            
+                                        @endif
 
                                     </div>
                                     {{-- <div style="display: inline">
@@ -51,7 +63,7 @@
                             </div>
 
                             <div style="display: inline">
-                                <a href="/user">{{$item->user->name}} </a><i class="text-xs "> menjawab </i>
+                                <a href="/user/{{$item->user->id}}">{{$item->user->name}} </a><i class="text-xs "> menjawab </i>
 
                             </div>
 

@@ -9,59 +9,54 @@ use App\User;
 
 class VoteAnswer extends Model
 {
-    //
     protected $table = 'vote_answers';
     
     public function answer(){
         return $this->belongsTo('App\Answer','answer_id','id');
     }
-    public static function jumlahDownVote($user_id){
-        $data = VoteAnswer::all()->where('pemberi_vote_jawaban_id',$user_id)
-                                    ->where('votes',-1)
-                                    ->count();
-        // dd($data);
-        return $data;
-    }
-    public static function berikanVote($id, $request){
-        $idUser = Auth::user()->id;
+    public static function lastValue($answer_id, $user_id){
         $vote = new VoteAnswer;
-        if(!(User::poin($idUser)<15 && $request->vote==-1)){
-            // dd(User::poin($idUser));
-            $vote->pemberi_vote_jawaban_id = $idUser;
-            $vote->answer_id = $request->id;
-            $data = $vote::all()->where('pemberi_vote_jawaban_id','=', $idUser);
-            // dd($data);
-            if($data->first()!=null){
-                // dd('a');
-                $path = $data->where('answer_id', $request->id)->first();
-                $nowValue = (int)$request->vote;
-                if($path!=null){
-                    $lastValue = $path->votes;
-                }else{
-                    $lastValue =0;
-                }
-                $vote->votes = $lastValue;
-                // dd($lastValue);
-                if($lastValue<$nowValue){
-                    $vote->votes +=1;
-                }else if($lastValue>$nowValue){
-                    $vote->votes -=1;
-                }
-                // dd($vote->votes);
-                $vote::where('pemberi_vote_jawaban_id','=', $idUser)
+        $data = $vote::all()->where('pemberi_vote_jawaban_id','=', $user_id);
+        if($data->first()!=null){
+            $path = $data->where('answer_id', $answer_id)->first();
+            if($path!=null){
+                $lastV = $path->votes;
+            }else{
+                $lastV =0;
+            }
+        }else{
+            $lastV = null;
+        }
+        return $lastV;
+
+    }
+    public static function giveVote($answer_id, $pemberi_vote_id, $value){
+        $vote = new VoteAnswer;
+        if(!(User::poin($pemberi_vote_id)<15 && $value==-1)){
+            $kondisi = VoteAnswer::lastValue($answer_id,$pemberi_vote_id);
+            if($kondisi!=null||$kondisi===0){
+                $vote::where('pemberi_vote_jawaban_id','=', $pemberi_vote_id)
                 ->update([
-                    'answer_id'=>$request->id,
-                    'votes'=>$vote->votes
+                    'answer_id'=>$answer_id,
+                    'votes'=>$value
                 ]);         
             }else{
-                // dd('data kosong');
-                $vote->votes = (int)$request->vote;
+                $vote->answer_id = $answer_id;
+                $vote->pemberi_vote_jawaban_id = $pemberi_vote_id;
+                $vote->votes = (int)$value;
                 $vote->save();
             }
             
         }else{
             dd('hahah poin kurang');
         }
-        return 0;
     }
+
+    public static function jumlahDownVote($user_id){
+        $data = VoteAnswer::all()->where('pemberi_vote_jawaban_id',$user_id)
+                                    ->where('votes',-1)
+                                    ->count();
+        return $data;
+    }
+   
 }
