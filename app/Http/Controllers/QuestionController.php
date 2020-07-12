@@ -17,16 +17,19 @@ class QuestionController extends Controller
 {
     //
     public function index(){
+        // dd(Auth::guest());
         $questions = Question::withCount('answers')->get();
             foreach ($questions as $key => $value) {
                 $np = $questions[$key]->votes->where('votes','=',1)->where("question_id",'=',$questions[$key]->id)->count();
                 $nn = $questions[$key]->votes->where('votes','=',-1)->where("question_id",'=',$questions[$key]->id)->count();
-                $questions[$key]->jumlah_vote = $np - $nn;
-                $lsValue = VoteQuestion::lastValue($questions[$key]->id, Auth::user()->id);
-                if($lsValue!=null){
-                    $questions[$key]->last_value = $lsValue;
-                }else{
-                    $questions[$key]->last_value = 0;
+                if(!Auth::guest()){
+                    $questions[$key]->jumlah_vote = $np - $nn;
+                    $lsValue = VoteQuestion::lastValue($questions[$key]->id, Auth::user()->id);
+                    if($lsValue!=null){
+                        $questions[$key]->last_value = $lsValue;
+                    }else{
+                        $questions[$key]->last_value = 0;
+                    }
                 }
             }
         $tags = Tag::join('questions','tags.questions_id','=','questions.id')->get();
